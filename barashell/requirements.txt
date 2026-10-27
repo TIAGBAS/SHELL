@@ -1,0 +1,9 @@
+html2image
+requests
+colorama
+dnspython
+tld
+python-dateutil
+weasyprint
+pysocks
+

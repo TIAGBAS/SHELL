@@ -1,0 +1,4 @@
+{companyname} Shared Mailbox
+{companyname} Management.
+{companyname} Internal Group Mailbox
+{companyname} Document Center

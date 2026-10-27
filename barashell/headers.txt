@@ -1,0 +1,51 @@
+{"X-Mailer": "Microsoft Outlook 16.0", "X-MimeOLE": "Produced By Microsoft MimeOLE V16.0.0.0"}
+{"X-Mailer": "Microsoft Windows Live Mail 16.4.3528.0331", "X-MimeOLE": "Produced By Microsoft MimeOLE V16.4.3528.0331"}
+{"X-Mailer": "iPhone Mail (17E262)", "X-Apple-Move-To-Inbox": "1"}
+{"X-Mailer": "iPad Mail (17E262)", "X-Apple-Move-To-Inbox": "1"}
+{"X-Mailer": "YahooMailAndroidMobile/4.9.2"}
+{"X-Mailer": "YahooMailiOS/4.9.2"}
+{"X-Mailer": "Thunderbird 78.11.0"}
+{"X-Mailer": "Roundcube Webmail/1.4.11"}
+{"X-Mailer": "Zimbra 8.8.15_GA_3869"}
+{"X-Mailer": "ColdFusion 2018"}
+{"X-Mailer": "PHPMailer 6.5.0 (https://github.com/PHPMailer/PHPMailer)"}
+{"X-Entity-ID": "{random}{random}", "X-Feedback-ID": "{random}:DirectMail:03"}
+{"X-PVIQ": "{random}-{random}-00000-000000-{random}", "X-Binding": "1"}
+{"X-Company-ID": "{random}", "List-Unsubscribe": "<mailto:unsubscribe@{domain}?subject=unsubscribe>" }
+{"X-Mailer": "Apple Mail (2.3654.120.0.1.13)", "X-MimeOLE": "Produced By Apple Mail V2.3654.120.0.1.13"}
+{"X-Mailer": "Outlook for iOS", "X-Microsoft-Exchange-Diagnostics": "1;MWHPR22MB0014;20:Hkjs78s...{random}"}
+{"X-Mailer": "Samsung Email 6.1.50.1", "X-Samsung-Mobile-Mail": "1"}
+{"User-Agent": "Android/9; Samsung Email/6.1.50.1"}
+{"X-Mailer": "Microsoft Outlook 16.0", "X-OriginatorOrg": "{domain}"}
+{"X-Report-Abuse": "<mailto:abuse@{domain}>", "X-Mailer": "Zimbra 9.0.0_GA_3924"}
+{"X-Auto-Response-Suppress": "DR, OOF, AutoReply", "X-MS-Exchange-Organization-AutoReply": "false"}
+{"X-Mailer": "Atmail 7.9.5"}
+{"X-Mailer": "Horde Application Framework 5"}
+{"X-Mailer": "SquirrelMail/1.4.23 [SVN]"}
+{"User-Agent": "Microsoft-MacOutlook/16.54.21101001"}
+{"X-Mailer": "eM Client 8.2.1659.0"}
+{"X-Mailer": "Airmail 5.0.6 (647)"}
+{"X-Mailer": "Canary Mail for Mac 3.23"}
+{"X-Mailer": "Newton Mail 10.0.42"}
+{"X-Mailer": "Spark 2.11.14.737"}
+{"X-Mailer": "Polymail 2.36"}
+{"X-Mailer": "Postbox 7.0.52"}
+{"X-Mailer": "Mailbird 2.9.56.0"}
+{"X-Mailer": "Inky 3.0.15"}
+{"X-Mailer": "Claws Mail 3.17.8"}
+{"X-Mailer": "Evolution 3.42.1"}
+{"X-Mailer": "KMail 5.18.2"}
+{"X-Mailer": "Geary 40.0"}
+{"X-Mailer": "Mutt 2.1.4"}
+{"X-Mailer": "Alpine 2.25"}
+{"X-Mailer": "Sup 1.0"}
+{"X-Mailer": "Mu4e 1.6.6"}
+{"X-Mailer": "Gnus v5.13"}
+{"X-Mailer": "Wanderlust 2.15.9"}
+{"X-Mailer": "VM 8.2.0b"}
+{"X-Mailer": "MH-E 8.6"}
+{"X-Mailer": "Rmail"}
+{"X-Mailer": "Babyl"}
+{"X-Mailer": "Sylpheed 3.7.0"}
+{"X-Mailer": "Balsa 2.6.3"}
+{"X-Mailer": "Trojita 0.7"}

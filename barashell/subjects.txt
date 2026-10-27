@@ -1,0 +1,7 @@
+Review Document shared | REF-[random]{sec}.pdf - {date}
+{companyname} Shared Document: Internal_Review_Doc_[random]{sec}.pdf - {date}
+Notice: Restricted Document sent to {mename} | REF-[random]{sec}
+[Action Required] Review & Confirm Receipt: Shared Document ({companyname})
+{companyname} Compliance Portal: Document Access Notice - {dayoftheweek}, {date}
+Internal Transmission: Document Review Requested by {companyname} Management [#{number}]
+Internal Portal Notification: Document Pending Verification for {mename} (REF-{sec}[random])

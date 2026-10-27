@@ -1,0 +1,111 @@
+## BARASHELL Email Sender – Guide & Tag Reference
+
+**File:** `guide.txt`
+
+---
+### 1. Overview
+`send.py` is a flexible bulk‑mail sender.  All dynamic values are inserted via **tag commands** enclosed in curly braces `{}` or square brackets `[]`.  The tags are processed by the `findString()` helper before the message is built.
+
+---
+### 2. Tag Commands
+| Tag | Description | Example Output |
+|-----|-------------|----------------|
+| `{email}` | Full recipient address (e.g. `john@example.com`). | `john@example.com` |
+| `{year}` or `[year]` | Current 4‑digit year. | `2026` |
+| `{equal}` | Literal `=` (useful inside URL parameters). | `=` |
+| `{random}` or `[random]` | Random alphanumeric string (default length 15). | `aZ3k9L...` |
+| `{randomN}` or `[randomN]` | Random string of **N** characters (e.g. `{random10}`). | `g5Hs9QwXz2` |
+| `{number}` or `[number]` | Random numeric string (default length 15). | `839274923874` |
+| `{numberN}` or `[numberN]` | Random numeric string of **N** digits. | `8392749` |
+| `{mename}` | Capitalized local‑part of the recipient (before `@`). | `John` |
+| `{mename3}` | First three letters of the capitalized local‑part, forced upper‑case. | `JOH` |
+| `{user}` | Lower‑case local‑part (username). | `john` |
+| `{frmsite}` / `[frmsite]` | Capitalized domain name without TLD (e.g. `Example`). | `Example` |
+| `{domain}` | Full domain part of the recipient. | `example.com` |
+| `{companyname}` / `{comapnyname}` | Company name resolved via Clearbit API; falls back to `{frmsite}`. | `Example Corp` |
+| `{base64email}` / `[base64email]` | URL‑safe Base64 encoding of the email address. | `am9obkBleGFtcGxlLmNvbQ==` |
+| `{hexemail}` | Hexadecimal representation of the email address. | `6a6f686e406578616d706c652e636f6d` |
+| `{time}` | Current time in `HH:MM:SS AM/PM`. | `10:32:15 AM` |
+| `{sec}` / `[sec]` | Current seconds (00‑59). | `15` |
+| `{secs}` | Random 8‑character string used for obfuscation. |
+| `{date}` | Current date formatted as `dd Month, YYYY` (e.g. `27 October, 2026`). |
+| `{dayoftheweek}` | Full weekday name. | `Thursday` |
+| `{monthoftheyear}` | Full month name. | `October` |
+| `{random_text_block}` | Auto‑generated random alphanumeric block (50‑200 chars) injected into HTML (used by obfuscation). |
+| `{random_comment}` | Auto‑generated HTML comment with random text (10‑30 chars). |
+| `{QRCODE_URL:<url>}` | Placeholder for a QR‑code image. During `Sendout()` the URL is downloaded, saved under `LOGO_PICS/` and referenced as `cid:qr_<hash>.png`. |
+| **PDF filename tags** (used when `send_as_pdf=True`):
+| `{companyname}` | Company name (same as above). |
+| `{numberN}` | Random numeric string of **N** digits, useful for unique filenames. |
+| `{date}` | Current date, as described. |
+
+**Note:** Tags inside HTML templates (`message.html`, `letters/*.html`, `ATT/attach.html`) are replaced automatically.  Any unknown tag remains unchanged.
+
+---
+### 3. Configuration (`setup.ini`)
+| Section | Option | Meaning |
+|---------|--------|---------|
+| `[OPTION]` | `use_letters` | `True` → random template from `letters/`; `False` → use `message.html` directly. |
+| `[PDF OPTION]` | `send_as_pdf` | When `True` the file `ATT/attach.html` is rendered to PDF (requires **WeasyPrint**). |
+| | `pdf_template` | Filename pattern for PDF (default `Document_{companyname}_{number9}_{date}.pdf`). |
+| | `attach_html_file` | Path to the HTML used for PDF conversion (`ATT/attach.html`). |
+| `[PROXY]` | `use_socks_proxy`, `socks_proxy_host`, `socks_proxy_port`, `socks_proxy_user`, `socks_proxy_pass` | Enable optional SOCKS5 proxy for SMTP connections. |
+| `[OBFUSCATION]` | `enable_obfuscation` | `True` enables HTML entity encoding and noise injection. |
+| | `entity_obfuscation_rate` | Probability (0‑1) that a character is replaced by an HTML entity. |
+| | `auto_inject_noise` | `True` inserts `{random_text_block}` and `{random_comment}` automatically. |
+| `[GENERAL]` (others) | `showlink`, `useqr`, `usedoc`, `autokilllink` | Toggle additional features (direct link, QR code, HTML document attachment, auto‑redirect attachment). |
+
+---
+### 4. Preparing Templates
+1. **Body template** – `message.html` (or any file inside `letters/`).  Use any of the tags above inside the HTML.
+2. **PDF attachment** – Create `ATT/attach.html`.  It can also contain tags; the rendered PDF will reflect the evaluated values.
+3. **Static assets** – Place images (logos, QR codes) in `LOGO_PICS/` or let the script download them automatically.
+
+---
+### 5. Running the Sender
+```bash
+# Basic usage (replace values as needed)
+python3 send.py \
+    -r "recipient@example.com" \
+    -s "sender@domain.com" \
+    -t "Subject with {companyname}" \
+    -b "message.html"   # optional, defaults to configured template
+```
+**Common command‑line arguments (excerpt):**
+- `-r` – recipient address (or `{mx}` for MX lookup).
+- `-s` – sender address (used in `From:`).
+- `-t` – email subject; tags are expanded.
+- `-b` – explicit body HTML file (overrides `use_letters` toggle).
+- `-p` – enable PDF attachment (`send_as_pdf=True`).
+- `-c` – enable obfuscation (`enable_obfuscation=True`).
+- `-k` – enable auto‑kill‑link (`autokilllink=True`).
+- `-d` – enable document attachment (`usedoc=True`).
+
+All other options are read from `setup.ini`; you can edit that file directly to change defaults.
+
+---
+### 6. Installing PDF support (optional)
+If you plan to use `send_as_pdf=True`:
+```bash
+pip install weasyprint
+```
+Add `weasyprint` to `requirements.txt` (already done).
+
+---
+### 7. Quick Checklist before sending
+1. Verify `setup.ini` toggles match the desired behavior.
+2. Ensure `message.html` or `letters/` templates contain the needed tags.
+3. If using PDF, confirm `ATT/attach.html` exists.
+4. Test a single email with the `-r` flag before bulk runs.
+5. Review the generated raw MIME payload (the script prints a success line with payload size). 
+
+---
+### 8. Troubleshooting
+- **Missing WeasyPrint** – script will fall back to plain HTML attachment and print a warning (see test log).
+- **QR code download failure** – a warning is printed; the email will contain the placeholder text instead of an image.
+- **`{QRCODE_URL:…}` not replaced** – ensure the URL is reachable and internet connectivity is available.
+- **Obfuscation causing broken HTML** – reduce `entity_obfuscation_rate` or set `enable_obfuscation=False`.
+
+---
+### 9. Credits
+Implemented by the Antigravity team – © 2026.
